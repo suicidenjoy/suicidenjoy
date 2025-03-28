@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meet Verified Girls Tonight!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #ffebf3;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .age-icon {
+            width: 30px;
+            height: 30px;
+            background-color: #ff0066;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .trust-badge {
+            display: inline-flex;
+            align-items: center;
+            background: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            margin: 10px 15px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+            font-weight: bold;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .trust-badge:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+
+        .trust-badge i {
+            margin-right: 10px;
+            width: 18px;
+            text-align: center;
+        }
+
+        .pulse-button {
+            background: #ff0066;
+            color: white;
+            padding: 18px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: bold;
+            display: block;
+            margin: 15px auto;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 0 0 0 rgba(255, 0, 102, 0.7);
+            animation: pulse 2s infinite;
+            transition: all 0.3s ease;
+            width: max-content;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 0, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 0, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 0, 102, 0); }
+        }
+
+        .responsive-img-container {
+            width: 750px;
+            height: 747px; /* Новый размер 750x747 */
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 10px;
+            border: 3px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .responsive-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .age-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+        }
+
+        .modal-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .modal-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .confirm-btn {
+            background: #28a745;
+            color: white;
+        }
+
+        .deny-btn {
+            background: #dc3545;
+            color: white;
+        }
+
+        .copyright {
+            margin-top: 20px;
+            font-size: 0.7rem;
+            color: #999;
+            text-align: center;
+            padding: 10px;
+            border-top: 1px solid #eee;
+        }
+
+        .online-counter {
+            margin: 10px 0 5px 0;
+            font-size: 1.1rem;
+        }
+
+        .online-counter span {
+            font-weight: bold;
+        }
+
+        .connections-counter {
+            margin: 15px 0 5px 0;
+            font-size: 1.1rem;
+        }
+
+        .offer-timer {
+            margin: 5px 0 15px 0;
+            font-size: 0.9rem;
+            color: #ff0066;
+        }
+
+        .content-above {
+            margin-bottom: 20px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .responsive-img-container {
+                width: 100%;
+                height: 0;
+                padding-bottom: 99.6%; /* Сохраняем пропорции 750x747 */
+            }
+
+            .responsive-img {
+                height: 100%;
+            }
+
+            .trust-badge {
+                margin: 10px 5px;
+                padding: 10px 15px;
+            }
+
+            .pulse-button {
+                padding: 15px 25px;
+                font-size: 1.1rem;
+                width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Your Dream Date is Waiting!</h1>
+        <div class="age-icon">18+</div>
+    </div>
+
+    <div class="content-above">
+        <div class="online-counter">
+            <i class="fas fa-heart" style="color: #ff0066; margin-right: 8px;"></i>
+            <span id="girlsOnline">137</span> girls online now!
+        </div>
+
+        <button id="joinButton" class="pulse-button">
+            <i class="fas fa-fire" style="margin-right: 10px;"></i>JOIN NOW - LIMITED SPOTS!
+        </button>
+
+        <div class="offer-timer">
+            <i class="fas fa-clock" style="margin-right: 8px;"></i>Offer expires in: <span id="countdown">05:00</span>
+        </div>
+
+        <div class="connections-counter">
+            <i class="fas fa-thumbs-up" style="color: #4267B2; margin-right: 8px;"></i>
+            <b><span id="userCount">12,485</span>+</b> connections today!
+        </div>
+    </div>
+
+    <!-- Обновленный блок с фото 750x747 -->
+    <div class="responsive-img-container">
+        <img src="sexy-image.jpg" alt="Verified local girls" class="responsive-img">
+    </div>
+
+    <div style="margin: 15px 0 10px 0;">
+        <div class="trust-badge">
+            <i class="fas fa-lock" style="color: #28a745;"></i>
+            <span>100% Secure</span>
+        </div>
+        <div class="trust-badge">
+            <i class="fas fa-user-check" style="color: #17a2b8;"></i>
+            <span>Verified Profiles</span>
+        </div>
+        <div class="trust-badge">
+            <i class="fas fa-shield-alt" style="color: #ffc107;"></i>
+            <span>Strict Verification</span>
+        </div>
+    </div>
+
+    <div class="copyright">
+        © 2020-2025 Protected by copyright. All rights reserved.
+    </div>
+
+    <div id="ageModal" class="age-modal">
+        <div class="modal-content">
+            <i class="fas fa-exclamation-triangle" style="color: #ff0066; font-size: 2.5rem; margin-bottom: 15px;"></i>
+            <h2 style="margin-bottom: 10px;">Age Verification</h2>
+            <p>This website contains adult content and is only for viewers over 18 years old.</p>
+            <p><strong>Are you 18 years or older?</strong></p>
+            <div class="modal-buttons">
+                <button class="modal-btn confirm-btn" id="confirmAge">Yes, I'm 18+</button>
+                <button class="modal-btn deny-btn" id="denyAge">No, I'm under 18</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let girlsOnline = 137;
+        const girlsOnlineElement = document.getElementById('girlsOnline');
+
+        function updateGirlsCounter() {
+            const increment = Math.floor(Math.random() * 2) + 1;
+            const delay = Math.floor(Math.random() * 3000) + 3000;
+
+            setTimeout(() => {
+                girlsOnline += increment;
+                girlsOnlineElement.textContent = girlsOnline;
+
+                girlsOnlineElement.style.animation = 'none';
+                void girlsOnlineElement.offsetWidth;
+                girlsOnlineElement.style.animation = 'fadeIn 0.5s ease';
+
+                updateGirlsCounter();
+            }, delay);
+        }
+
+        updateGirlsCounter();
+
+        document.getElementById('joinButton').addEventListener('click', function() {
+            document.getElementById('ageModal').style.display = 'flex';
+        });
+
+        document.getElementById('confirmAge').addEventListener('click', function() {
+            window.location.href = 'https://offers.affimelody.com/click?pid=11349&offer_id=25';
+        });
+
+        document.getElementById('denyAge').addEventListener('click', function() {
+            document.getElementById('ageModal').style.display = 'none';
+        });
+
+        document.getElementById('ageModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.style.display = 'none';
+            }
+        });
+
+        let count = 12485;
+        setInterval(() => {
+            count += Math.floor(Math.random() * 3);
+            document.getElementById('userCount').textContent = count.toLocaleString();
+        }, 3000);
+
+        let time = 300;
+        const countdown = setInterval(() => {
+            time--;
+            const minutes = Math.floor(time / 60);
+            const seconds = time % 60;
+            document.getElementById('countdown').textContent =
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            if (time <= 0) clearInterval(countdown);
+        }, 1000);
+    </script>
+</body>
+</html>
